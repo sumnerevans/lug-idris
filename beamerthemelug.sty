@@ -1,0 +1,93 @@
+\usetheme{Luebeck}
+\usecolortheme{beaver}
+\usefonttheme[onlymath]{serif}
+
+\usepackage{tikz}
+\usepackage{xcolor}
+\definecolor{csmblue}{RGB}{33,49,77}
+\definecolor{csmred}{HTML}{D2492A}
+\definecolor{csmgrey}{HTML}{D9D9D9}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathspec}
+
+\newfontfamily\headingfont[UprightFont={* Medium},BoldFont={* Bold}]{Gotham}
+\setmathsfont{Latin Modern Math}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Iosevka Term}
+\setbeamerfont*{frametitle}{size=\Large,family=\headingfont}
+\setbeamercolor{frametitle}{bg=csmblue,fg=white}
+
+\setbeamerfont*{titlelike}{family=\headingfont}
+\setbeamerfont*{title}{size=\Large,series=\bfseries,family=\headingfont}
+\setbeamercolor{titlelike}{bg=csmblue,fg=white}
+\setbeamercolor{subtitle}{bg=csmred,fg=white}
+
+\setbeamercolor{item}{fg=csmred,bg=csmgrey}
+\setbeamercolor{palette primary}{bg=csmblue,fg=white}
+\setbeamercolor{palette secondary}{bg=csmred,fg=white}
+\setbeamercolor{normal text}{bg=white,fg=csmblue}
+
+\setbeamercolor{block title}{bg=csmblue,fg=white}
+\setbeamercolor{block body}{bg=csmgrey,fg=csmblue}
+
+\setbeamertemplate{headline}{}
+
+\setbeamertemplate{footline}{%
+\leavevmode%
+\resizebox{\paperwidth}{!}{%
+\colorbox{csmblue}{\makebox[0.1\paperwidth]{}}%
+\colorbox{csmred}{\makebox[0.9\paperwidth]{}}}
+\resizebox{\paperwidth}{!}{%
+\colorbox{csmgrey}{\begin{minipage}{0.5\paperwidth}
+\textcolor{csmblue}{\headingfont\large \insertauthor}
+\end{minipage}\begin{minipage}{0.5\paperwidth}
+\flushright{\textcolor{csmblue}{\headingfont\bfseries\large Mines Linux Users Group}}
+\end{minipage}}}%
+\vskip0pt%
+}
+
+\defbeamertemplate*{title page}{customized}[1][]{
+  \vfill
+  \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par
+      \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+  \end{beamercolorbox}
+  \bigskip
+  \begin{center}
+  \headingfont
+      \textbf{\insertauthor}\\
+      \insertdate\par
+      \bigskip
+      Mines Linux Users Group \\
+      \url{https://lug.mines.edu}
+  \end{center}
+  \vfill
+}
+
+\AtBeginSection[]{
+  {%
+      \setbeamercolor{normal text}{fg=white}
+      \usebeamercolor[fg]{normal text}
+      \begin{frame}
+          \vfill
+          \centering
+          \headingfont
+          \Large
+          \bfseries
+          \begin{beamercolorbox}[sep=8pt,center]{subtitle}
+              \insertsectionhead\par%
+          \end{beamercolorbox}
+          \vfill
+      \end{frame}
+   }
+}
+
+\newcommand\mi[1]{\mintinline{python3}{#1}}
+
+\usepackage{graphicx}
+\setlength\parskip{10pt plus 1pt minus 10pt}
+
+\beamertemplatenavigationsymbolsempty%
+
