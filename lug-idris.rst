@@ -42,42 +42,75 @@ The Obligatory Picture of This Madman
 Properties of Idris
 ===================
 
-- Idris can be **interpreted, transpiled, or compiled**
-- Idris is **statically typed**
-- Idris is **strongly typed**
-
-As you will see as this presentation goes on, Idris is **only typed**.
-
+- Idris can be **interpreted, transpiled, or compiled**.
+- Idris is **statically typed**.
+- Idris is **strongly typed**.
+- Idris has **first class functions**, much like Haskell.
+- Idris has **first class types**. This means that types can be treated as data.
+  In fact, types are the *only* type of data.
 
 Idris Features
 ==============
 
-- Haskell-like syntax
-- 
+Idris is a general purpose language, and thus it has a lot of features. We will
+focus on the following aspects of the language.
 
-.. TODO haskell-like syntax, ...
+- Haskell-like Syntax
+- Dependent Types
+- Proof Assistant
+
 .. TODO as we discuss these, talk about the evaluation metrics of Idris
    (readability, writabality, etc.)
 
-Idris Syntax
-============
+Idris Syntax: Function Signatures
+=================================
 
-.. TODO maybe combine with Idris Features?
+The Idris function signature syntax is *very* similar to the Haskell function
+signature syntax. Here are a few examples of Idris function signatures:
 
-.. TODO we are supposed to just concentrate on a couple of features that make it
-        nice. I think we focus on the function definition syntax, holes, and
-        data definition syntax (this segways well into the next part about
-        dependent types and the proof assistant)
+.. code:: idris
 
-What Makes Idris Unique?
-========================
+    even : Nat -> Bool
+    add : Nat -> Nat -> Nat
+    foo : (a:Nat) -> (b:Nat) -> a = b
+    bar : (a:Nat) -> (b:Nat) -> LTE a b
 
-.. TODO dependent types and proof assistant
+If you are familiar with Haskell, you will note the use of ``:`` rather than
+``::``. This makes it look a bit more like a mathematical function definition:
 
-What is a Dependent Type?
-=========================
+.. math:: f : \mathbb{N} \rightarrow \mathbb{N}.
 
-.. TODO
+You will also note that instead of the ``(Type x) => x`` syntax, it uses a more
+concise ``(x:Type)`` syntax.
+
+Idris Syntax: Currying and Pattern Matching
+===========================================
+
+Because of its foundation in Lambda Calculus, all functions only take a single
+argument. We can still handle multiple arguments using *currying*. For example,
+the ``plus`` operator is defined as follows:
+
+.. code:: idris
+
+    plus : Nat -> Nat -> Nat
+    plus   Z      y   = y
+    plus   (S k)  y   = S (plus k y)
+
+Like Haskell, functions are implemented using *pattern matching*.
+
+Idris Syntax: Pattern Matching
+==============================
+
+Idris Syntax: Type Definition Syntax
+====================================
+
+Idris Syntax: Holes
+===================
+
+Dependent Types
+===============
+
+.. TODO dependent types
 
 Using Idris as a Proof Assistant
 ================================

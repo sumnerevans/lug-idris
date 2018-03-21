@@ -26,10 +26,10 @@ out/%.pdf: %.tex beamerthemelug.sty | graphics out
 	      $(patsubst out/%.pdf,%.vrb,$@)
 
 %-169.tex: %.rst
-	rst2beamer $(R2BOPTIONS) --documentoptions="aspectratio=169" $< > $@
+	rst2beamer $(R2BOPTIONS) --documentoptions="aspectratio=169" $< | grep -v amsmath > $@
 
 %-1610.tex: %.rst
-	rst2beamer $(R2BOPTIONS) --documentoptions="aspectratio=1610" $< > $@
+	rst2beamer $(R2BOPTIONS) --documentoptions="aspectratio=1610" $< | grep -v amsmath > $@
 
 %-43.tex: %.rst
-	rst2beamer $(R2BOPTIONS) --documentoptions="aspectratio=43" $< > $@
+	rst2beamer $(R2BOPTIONS) --documentoptions="aspectratio=43" $< | grep -v amsmath > $@
