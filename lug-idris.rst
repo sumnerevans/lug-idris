@@ -55,12 +55,17 @@ Idris Features
 Idris is a general purpose language, and thus it has a lot of features. We will
 focus on the following aspects of the language.
 
-- Haskell-like Syntax
 - Dependent Types
+- Haskell-like Syntax
 - Proof Assistant
 
 .. TODO as we discuss these, talk about the evaluation metrics of Idris
    (readability, writabality, etc.)
+
+Dependent Types
+===============
+
+.. TODO dependent types
 
 Idris Syntax: Function Signatures
 =================================
@@ -106,11 +111,6 @@ Idris Syntax: Type Definition Syntax
 
 Idris Syntax: Holes
 ===================
-
-Dependent Types
-===============
-
-.. TODO dependent types
 
 Using Idris as a Proof Assistant
 ================================
