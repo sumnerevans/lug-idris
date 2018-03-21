@@ -32,22 +32,32 @@ What is Idris?
   2018.
 - Idris was named after the singing dragon in the 1970s UK children's television
   program *Ivor the Engine*.
+- Idris development is led by Edwin Brady at the University of St. Andrews.
 
-Goals of Idris
-==============
+The Obligatory Picture of This Madman
+=====================================
 
-.. TODO goals here
+.. image:: graphics/edwin-brady.jpg
 
 Properties of Idris
 ===================
 
-.. TODO classification (static, strong, compiled/transpiled/interpreted) and
-   evaluation of Idris (readability, writabality, etc.)
+- Idris can be **interpreted, transpiled, or compiled**
+- Idris is **statically typed**
+- Idris is **strongly typed**
+
+As you will see as this presentation goes on, Idris is **only typed**.
+
 
 Idris Features
 ==============
 
+- Haskell-like syntax
+- 
+
 .. TODO haskell-like syntax, ...
+.. TODO as we discuss these, talk about the evaluation metrics of Idris
+   (readability, writabality, etc.)
 
 Idris Syntax
 ============
