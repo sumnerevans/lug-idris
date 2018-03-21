@@ -1,3 +1,6 @@
+.. role:: idris(code)
+   :language: idris
+
 Idris
 #####
 A Programming Language with Dependent Types
@@ -63,6 +66,16 @@ focus on the following aspects of the language.
 
 Dependent Types
 ===============
+
+Consider these two arrays:
+
+.. code:: idris
+
+    [1, 2, 3]
+    [1, 2, 3, 4]
+
+What are their types? The first is a 3-dimensional array, the second is
+4-dimensional.
 
 .. TODO dependent types
 
@@ -155,6 +168,22 @@ assistant.**
 
 .. TODO run away, run away quickly
 .. TODO this section is where we will have our code demos
+
+The Equality Type
+=================
+
+The basis for proofs in Idris is the ``(=)`` type constructor. It constructs a
+type that is dependent on two expressions.
+
+- Any :idris:`Nat` is a natural number.
+
+- Any :idris:`Vect 2 Nat` is a list of two natural numbers.
+
+- Any :idris:`(=) (2 + 2) 4` is a proof that 2+2 and 4 have the same value.
+
+- Any :idris:`1 = 3` is a proof that 1 and 3 have the same value.
+
+**It is impossible to create an instance of** :idris:`1 = 3`
 
 Quotes From Our Exploration
 ===========================
