@@ -47,7 +47,6 @@ Properties of Idris
 - Idris is **strongly typed**.
 - Idris has **first class functions**, much like Haskell.
 - Idris has **first class types**. This means that types can be treated as data.
-  In fact, types are the *only* type of data.
 
 Idris Features
 ==============
@@ -147,6 +146,12 @@ And then load it into Idris:
 
 Using Idris as a Proof Assistant
 ================================
+
+A proof assistant is a software tool to assist with the development of formal
+proofs by human-machine collaboration.
+
+**The Idris type system is robust enough that it can be used as a proof
+assistant.**
 
 .. TODO run away, run away quickly
 .. TODO this section is where we will have our code demos
