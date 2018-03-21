@@ -103,14 +103,47 @@ the ``plus`` operator is defined as follows:
 
 Like Haskell, functions are implemented using *pattern matching*.
 
-Idris Syntax: Pattern Matching
-==============================
-
 Idris Syntax: Type Definition Syntax
 ====================================
 
+Idris defines several primitives including ``Int``, ``Integer``, ``Double``,
+``Char``, ``String``, and ``Ptr``.
+
+There are a bunch of other data types defined in the standard library including
+``Nat`` and ``Bool``.
+
+Idris allows programmers to define their own data types. Again, the syntax is
+similar to Haskell.
+
+.. code:: idris
+
+    data Nat    = Z   | S Nat
+    data List a = Nil | (::) a (List a)
+
 Idris Syntax: Holes
 ===================
+
+Idris allows you to leave some of your code unfinished. For example, if we write
+the following code in a file called ``even.idr``:
+
+.. code:: idris
+
+    even : Nat -> Bool
+    even Z = True
+    even (S k) = ?even_rhs
+
+And then load it into Idris:
+
+.. code::
+
+    :Idris> :l even
+    Holes: even_rhs
+    even> :t even_rhs
+      k : Nat
+    --------------------------------------
+    even_rhs : Bool
+    Holes: even_rhs
+
 
 Using Idris as a Proof Assistant
 ================================
