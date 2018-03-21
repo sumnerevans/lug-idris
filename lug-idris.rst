@@ -79,6 +79,19 @@ What are their types? The first is a 3-dimensional array, the second is
 
 .. TODO dependent types
 
+The Equality Type
+=================
+
+The basis for proofs in Idris is the ``(=)`` type constructor. It constructs a
+type that is dependent on two expressions.
+
+- Any :idris:`Nat` is a natural number.
+- Any :idris:`Vect 2 Nat` is a list of two natural numbers.
+- Any :idris:`(=) (2 + 2) 4` is a proof that 2+2 and 4 have the same value.
+- Any :idris:`1 = 3` is a proof that 1 and 3 have the same value.
+
+**It is impossible to create an instance of** :idris:`1 = 3`
+
 Idris Syntax: Function Signatures
 =================================
 
@@ -156,7 +169,6 @@ And then load it into Idris:
     even_rhs : Bool
     Holes: even_rhs
 
-
 Using Idris as a Proof Assistant
 ================================
 
@@ -166,24 +178,16 @@ proofs by human-machine collaboration.
 **The Idris type system is robust enough that it can be used as a proof
 assistant.**
 
+Recall from above that equality is a type constructor. This means that we can
+pass equalities in and out of functions. Take this example:
+
+.. code:: idris
+
+    plusReduces : (n:Nat) -> plus Z n = n
+    plusReduces n = Refl
+
 .. TODO run away, run away quickly
 .. TODO this section is where we will have our code demos
-
-The Equality Type
-=================
-
-The basis for proofs in Idris is the ``(=)`` type constructor. It constructs a
-type that is dependent on two expressions.
-
-- Any :idris:`Nat` is a natural number.
-
-- Any :idris:`Vect 2 Nat` is a list of two natural numbers.
-
-- Any :idris:`(=) (2 + 2) 4` is a proof that 2+2 and 4 have the same value.
-
-- Any :idris:`1 = 3` is a proof that 1 and 3 have the same value.
-
-**It is impossible to create an instance of** :idris:`1 = 3`
 
 Quotes From Our Exploration
 ===========================
