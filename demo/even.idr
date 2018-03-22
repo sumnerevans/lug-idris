@@ -47,6 +47,7 @@ evenIsPlusSelf {n=S $ S n} {k=S k} pk =
     plusConstantLeft n (plus k k) 2 (evenIsPlusSelf {n=n} {k=k} (evenLessTwoEven pk))
 
 -- Any even number `n` can be written as some 2 * k.
+-- PROVING AN IMPLICATION
 total
 evenIsTimesTwo : (even n = Just k) -> n = 2 * k
 evenIsTimesTwo {k=k} pk =
@@ -62,6 +63,7 @@ plusSelfEven (S n) =
   rewrite plusSelfEven n in Refl
 
 -- For any even number `n`, 2 * n is even.
+-- PROVING A PROPERTY
 total
 timesTwoEven : (n:Nat) -> even $ 2 * n = Just n
 timesTwoEven n =

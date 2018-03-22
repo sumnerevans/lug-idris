@@ -254,6 +254,34 @@ Demo
     We are not responsible for any harm done to your brain by viewing the
     following code.
 
+Evaluation of Idris as a Language
+=================================
+
+**Writability:** very expressive, relatively small grammar, many abstractions,
+*very* orthogonal
+
+**Readability:** grammar is simple but sometimes too compact, abstractions are
+common (but sometimes too magical), *very* orthogonal
+
+**Reliability:** purely functional, strongly and statically typed, uses the
+``IO`` monad model
+
+**Feasibility:** interpreter/compiler is widely available (there's a ``pacman``
+package) and supports many targets, tooling is good
+
+Evaluation of Idris as a Proof Assistant
+========================================
+
+**Writability:** holes are useful, but filling them is hard due to an insane
+degree of formality
+
+**Readability:** proof logic is obscure and hard to follow
+
+**Reliability:** it is *extremely* reliable (too reliable, in fact)
+
+**Feasibility:** proofs involving large numbers are extremely slow to compile
+and cannot be multithreaded
+
 Quotes From Our Exploration
 ===========================
 
