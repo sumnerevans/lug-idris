@@ -179,15 +179,27 @@ proofs by human-machine collaboration.
 assistant.**
 
 Recall from above that equality is a type constructor. This means that we can
-pass equalities in and out of functions. Take this example:
+pass equalities in and out of functions. This is the basis for all proofs in
+Idris.
+
+Take this example function declaration:
 
 .. code:: idris
 
     plusReduces : (n:Nat) -> plus Z n = n
-    plusReduces n = Refl
 
-.. TODO run away, run away quickly
-.. TODO this section is where we will have our code demos
+This is a function which takes any :math:`n \in \mathbb{N}`, and returns a proof
+that :math:`0 + n = n`. Any successful implementation of this function will
+prove that :math:`0 + n = n`.
+
+Demo
+====
+
+.. warning::
+    **LIVE DEMO AHEAD**
+
+    We are not responsible for any harm done to your brain by viewing the
+    following code.
 
 Quotes From Our Exploration
 ===========================
