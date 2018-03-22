@@ -137,7 +137,7 @@ The Equality Type Constructor
 =============================
 
 The basis for proofs in Idris is the ``(=)`` function. It takes two inputs, and
-returns the type of a proof that the two inputs have the same value.
+the return type is a proof that the two inputs have the same value.
 
 - Any :idris:`Nat` is a natural number.
 - Any :idris:`Vect 2 Nat` is a list of two natural numbers.
