@@ -45,11 +45,12 @@ The Obligatory Picture of This Madman
 Properties of Idris
 ===================
 
-- Idris can be **interpreted, transpiled, or compiled**.
-- Idris is **statically typed**.
-- Idris is **strongly typed**.
-- Idris has **first class functions**, much like Haskell.
-- Idris has **first class types**. This means that types can be treated as data.
+- Idris can be **interpreted, transpiled, or compiled**
+- Idris is **statically typed**
+- Idris is **strongly typed**
+- Idris is **purely functional** (much like Haskell)
+- Idris has **first class types** (types can be treated as data)
+- Idris has **dependent types** (the types are all high on something)
 
 Idris Features
 ==============
@@ -64,33 +65,85 @@ focus on the following aspects of the language.
 .. TODO as we discuss these, talk about the evaluation metrics of Idris
    (readability, writabality, etc.)
 
-Dependent Types
-===============
+Types
+=====
 
-Consider these two arrays:
+Idris has familiar, Haskell-ish types:
+
+- ``Nat`` - A natural number
+- ``Bool`` - A boolean
+- ``Char`` - A single charecter
+- ``List Int`` - A list of integers
+- ``Nat -> Bool`` - A function that takes a natural number and produces a boolean
+- ``(Nat, Nat)`` - A tuple of two natural numbers
+- ``Int -> Int -> Int`` - A function that takes two arguments
+
+Types as Data
+=============
+
+Unlike Haskell, data types can be stored, passed, and constructed like data:
 
 .. code:: idris
 
-    [1, 2, 3]
-    [1, 2, 3, 4]
+    an_int : Int
+    an_int = 5
 
-What are their types? The first is a 3-dimensional array, the second is
-4-dimensional.
+    a_type : Type
+    a_type = Int
 
-.. TODO dependent types
+We could write a function to choose between an ``Int`` and a ``Nat``:
 
-The Equality Type
-=================
+.. code:: idris
 
-The basis for proofs in Idris is the ``(=)`` type constructor. It constructs a
-type that is dependent on two expressions.
+    PickInt : Bool -> Type
+    PickInt True = Int
+    PickInt False = Nat
+
+This is called a **type constructor**.
+
+Dependent Types
+===============
+
+Any expression that returns ``Type`` can be used as type itself:
+
+.. code:: idris
+
+    foo : PickInt (True && False)
+    foo = 5
+
+    bar : case False of
+        True => List Char
+        False => String
+    bar = "Hello, World!"
+
+These are called **dependent types**, since they *depend* on data.
+
+Useful Dependent Types
+======================
+
+``List`` and ``Vect`` are examples of type constructors:
+
+- ``List Int`` is a dynamically sized list of integers.
+- ``Vect 10 Int`` is a list of exactly 10 integers.
+
+Since type constructors are simply functions, they support things like currying:
+
+.. code:: idris
+
+    TwoOf : Type -> Type
+    TwoOf = Vect 2
+
+The Equality Type Constructor
+=============================
+
+The basis for proofs in Idris is the ``(=)`` function. It takes two inputs, and
+returns the type of a proof that the two inputs have the same value.
 
 - Any :idris:`Nat` is a natural number.
 - Any :idris:`Vect 2 Nat` is a list of two natural numbers.
 - Any :idris:`(=) (2 + 2) 4` is a proof that 2+2 and 4 have the same value.
 - Any :idris:`1 = 3` is a proof that 1 and 3 have the same value.
-
-**It is impossible to create an instance of** :idris:`1 = 3`
+- Any :idris:`even x = True` is a proof that `x` is even
 
 Idris Syntax: Function Signatures
 =================================
