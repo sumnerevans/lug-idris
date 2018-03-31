@@ -1,3 +1,5 @@
+.. image:: graphics/idris-logo.png
+
 lug-idris
 =========
 
