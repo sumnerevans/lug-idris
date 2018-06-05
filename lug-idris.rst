@@ -22,6 +22,9 @@ A Programming Language with Dependent Types
 .. - Describes your example code, why you wrote it, what it shows, what it does,
      what problems you encountered, etc.
 
+Introduction
+------------
+
 What is Idris?
 ==============
 
@@ -58,12 +61,95 @@ Idris Features
 Idris is a general purpose language, and thus it has a lot of features. We will
 focus on the following aspects of the language.
 
-- Dependent Types
 - Haskell-like Syntax
+- Dependent Types
 - Proof Assistant
 
 .. TODO as we discuss these, talk about the evaluation metrics of Idris
    (readability, writabality, etc.)
+
+Syntax
+------
+
+Function Signatures
+===================
+
+The Idris function signature syntax is *very* similar to the Haskell function
+signature syntax. Here are a few examples of Idris function signatures:
+
+.. code:: idris
+
+    even : Nat -> Bool
+    add : Nat -> Nat -> Nat
+    foo : (a:Nat) -> (b:Nat) -> a = b
+    bar : (a:Nat) -> (b:Nat) -> LTE a b
+
+If you are familiar with Haskell, you will note the use of ``:`` rather than
+``::``. This makes it look a bit more like a mathematical function definition:
+
+.. math:: f : \mathbb{N} \rightarrow \mathbb{N}.
+
+You will also note that instead of the ``(Type x) => x`` syntax, it uses a more
+concise ``(x:Type)`` syntax.
+
+Currying and Pattern Matching
+=============================
+
+Because of its foundation in Lambda Calculus, all functions only take a single
+argument. We can still handle multiple arguments using *currying*. For example,
+the ``plus`` operator is defined as follows:
+
+.. code:: idris
+
+    plus : Nat -> Nat -> Nat
+    plus   Z      y   = y
+    plus   (S k)  y   = S (plus k y)
+
+Like Haskell, functions are implemented using *pattern matching*.
+
+Type Definition Syntax
+======================
+
+Idris defines several primitives including ``Int``, ``Integer``, ``Double``,
+``Char``, ``String``, and ``Ptr``.
+
+There are a bunch of other data types defined in the standard library including
+``Nat`` and ``Bool``.
+
+Idris allows programmers to define their own data types. Again, the syntax is
+similar to Haskell.
+
+.. code:: idris
+
+    data Nat    = Z   | S Nat
+    data List a = Nil | (::) a (List a)
+
+Holes
+=====
+
+Idris allows you to leave some of your code unfinished. For example, if we write
+the following code in a file called ``even.idr``:
+
+.. code:: idris
+
+    even : Nat -> Bool
+    even Z = True
+    even (S k) = ?even_rhs
+
+And then load it into Idris:
+
+.. code::
+
+    :Idris> :l even
+    Holes: even_rhs
+    even> :t even_rhs
+      k : Nat
+    --------------------------------------
+    even_rhs : Bool
+    Holes: even_rhs
+
+Dependent Types
+---------------
 
 Types
 =====
@@ -145,91 +231,20 @@ the return type is a proof that the two inputs have the same value.
 - Any :idris:`1 = 3` is a proof that 1 and 3 have the same value.
 - Any :idris:`even x = True` is a proof that `x` is even
 
-Idris Syntax: Function Signatures
-=================================
-
-The Idris function signature syntax is *very* similar to the Haskell function
-signature syntax. Here are a few examples of Idris function signatures:
-
-.. code:: idris
-
-    even : Nat -> Bool
-    add : Nat -> Nat -> Nat
-    foo : (a:Nat) -> (b:Nat) -> a = b
-    bar : (a:Nat) -> (b:Nat) -> LTE a b
-
-If you are familiar with Haskell, you will note the use of ``:`` rather than
-``::``. This makes it look a bit more like a mathematical function definition:
-
-.. math:: f : \mathbb{N} \rightarrow \mathbb{N}.
-
-You will also note that instead of the ``(Type x) => x`` syntax, it uses a more
-concise ``(x:Type)`` syntax.
-
-Idris Syntax: Currying and Pattern Matching
-===========================================
-
-Because of its foundation in Lambda Calculus, all functions only take a single
-argument. We can still handle multiple arguments using *currying*. For example,
-the ``plus`` operator is defined as follows:
-
-.. code:: idris
-
-    plus : Nat -> Nat -> Nat
-    plus   Z      y   = y
-    plus   (S k)  y   = S (plus k y)
-
-Like Haskell, functions are implemented using *pattern matching*.
-
-Idris Syntax: Type Definition Syntax
-====================================
-
-Idris defines several primitives including ``Int``, ``Integer``, ``Double``,
-``Char``, ``String``, and ``Ptr``.
-
-There are a bunch of other data types defined in the standard library including
-``Nat`` and ``Bool``.
-
-Idris allows programmers to define their own data types. Again, the syntax is
-similar to Haskell.
-
-.. code:: idris
-
-    data Nat    = Z   | S Nat
-    data List a = Nil | (::) a (List a)
-
-Idris Syntax: Holes
-===================
-
-Idris allows you to leave some of your code unfinished. For example, if we write
-the following code in a file called ``even.idr``:
-
-.. code:: idris
-
-    even : Nat -> Bool
-    even Z = True
-    even (S k) = ?even_rhs
-
-And then load it into Idris:
-
-.. code::
-
-    :Idris> :l even
-    Holes: even_rhs
-    even> :t even_rhs
-      k : Nat
-    --------------------------------------
-    even_rhs : Bool
-    Holes: even_rhs
-
 Using Idris as a Proof Assistant
-================================
+--------------------------------
+
+What is a Proof Assistant?
+==========================
 
 A proof assistant is a software tool to assist with the development of formal
 proofs by human-machine collaboration.
 
 **The Idris type system is robust enough that it can be used as a proof
 assistant.**
+
+How can Idris be a Proof Assistant?
+===================================
 
 Recall from above that equality is a type constructor. This means that we can
 pass equalities in and out of functions. This is the basis for all proofs in
@@ -253,34 +268,6 @@ Demo
 
     We are not responsible for any harm done to your brain by viewing the
     following code.
-
-Evaluation of Idris as a Language
-=================================
-
-**Writability:** very expressive, relatively small grammar, many abstractions,
-*very* orthogonal
-
-**Readability:** grammar is simple but sometimes too compact, abstractions are
-common (but sometimes too magical), *very* orthogonal
-
-**Reliability:** purely functional, strongly and statically typed, uses the
-``IO`` monad model
-
-**Feasibility:** interpreter/compiler is widely available (there's a ``pacman``
-package) and supports many targets, tooling is good
-
-Evaluation of Idris as a Proof Assistant
-========================================
-
-**Writability:** holes are useful, but filling them is hard due to an insane
-degree of formality
-
-**Readability:** proof logic is obscure and hard to follow
-
-**Reliability:** it is *extremely* reliable (too reliable, in fact)
-
-**Feasibility:** proofs involving large numbers are extremely slow to compile
-and cannot be multithreaded
 
 Quotes From Our Exploration
 ===========================
