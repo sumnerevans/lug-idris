@@ -34,7 +34,7 @@ What is Idris?
     -- The Idris Website
 
 - **Version 0.1.3** of Idris was released in December of 2009.
-- **Version 1.2.0** is the latest stable release and was released on January 9,
+- **Version 1.3.0** is the latest stable release and was released on May 26,
   2018.
 - Idris was named after the singing dragon in the 1970s UK children's television
   program *Ivor the Engine*.
@@ -257,8 +257,8 @@ Take this example function declaration:
     plusReduces : (n:Nat) -> plus Z n = n
 
 This is a function which takes any :math:`n \in \mathbb{N}`, and returns a proof
-that :math:`0 + n = n`. Any successful implementation of this function will
-prove that :math:`0 + n = n`.
+that :math:`0 + n = n`. **Any successful implementation of this function will
+prove that** :math:`0 + n = n`.
 
 Demo
 ====
